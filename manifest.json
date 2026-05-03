@@ -1,0 +1,10 @@
+{
+  "id": "properties-filename",
+  "name": "Properties Filename",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "Automatically rename notes from frontmatter properties (e.g. nom + prenom) when they change.",
+  "author": "gilles6",
+  "authorUrl": "https://github.com/gilles6",
+  "isDesktopOnly": false
+}
