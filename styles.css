@@ -1,0 +1,13 @@
+.pf-rule {
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 6px;
+	padding: 0.75em;
+	margin-bottom: 0.75em;
+}
+
+.pf-rules-help {
+	color: var(--text-muted);
+	font-size: var(--font-ui-small);
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+}

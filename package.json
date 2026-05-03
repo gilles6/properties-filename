@@ -1,12 +1,12 @@
 {
   "name": "properties-filename",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Obsidian plugin: rename notes from frontmatter properties.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
     "build": "node esbuild.config.mjs production",
-    "deploy": "npm run build && cp main.js manifest.json \"$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Serge/.obsidian/plugins/properties-filename/\"",
+    "deploy": "npm run build && cp main.js manifest.json styles.css \"$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Serge/.obsidian/plugins/properties-filename/\"",
     "version": "node version-bump.mjs && git add manifest.json versions.json"
   },
   "keywords": ["obsidian", "plugin", "frontmatter", "properties", "rename", "filename"],

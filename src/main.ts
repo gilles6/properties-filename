@@ -4,7 +4,6 @@ import {
 	Plugin,
 	PluginSettingTab,
 	Setting,
-	TAbstractFile,
 	TFile,
 	debounce,
 	normalizePath,
@@ -184,10 +183,7 @@ export default class PropertiesFilenamePlugin extends Plugin {
 			const folder = rule.folder.replace(/^\/+|\/+$/g, "");
 			if (!folder) continue;
 			if (!rule.template?.trim()) continue;
-			if (
-				file.path === `${folder}.md` ||
-				file.path.startsWith(`${folder}/`)
-			) {
+			if (file.path.startsWith(`${folder}/`)) {
 				return rule;
 			}
 		}
@@ -195,7 +191,7 @@ export default class PropertiesFilenamePlugin extends Plugin {
 	}
 }
 
-export function applyTemplate(
+function applyTemplate(
 	template: string,
 	frontmatter: Record<string, unknown>
 ): string | null {
@@ -213,7 +209,7 @@ export function applyTemplate(
 	return collapsed || null;
 }
 
-export function sanitizeFilename(name: string): string {
+function sanitizeFilename(name: string): string {
 	return name.replace(ILLEGAL_FILENAME_CHARS, "").trim();
 }
 
@@ -265,15 +261,11 @@ class PropertiesFilenameSettingTab extends PluginSettingTab {
 
 		containerEl.createEl("p", {
 			text: "Each rule applies to files in a folder (subfolders included). The template uses {{property}} placeholders that are replaced by frontmatter values. A file is renamed only when all referenced properties are non-empty.",
-			cls: "setting-item-description",
+			cls: "pf-rules-help",
 		});
 
 		this.plugin.settings.rules.forEach((rule, index) => {
 			const ruleEl = containerEl.createDiv({ cls: "pf-rule" });
-			ruleEl.style.border = "1px solid var(--background-modifier-border)";
-			ruleEl.style.borderRadius = "6px";
-			ruleEl.style.padding = "0.75em";
-			ruleEl.style.marginBottom = "0.75em";
 
 			new Setting(ruleEl)
 				.setName(`Rule ${index + 1}`)
