@@ -1,7 +1,7 @@
 {
   "id": "properties-filename",
   "name": "Properties Filename",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "minAppVersion": "1.4.0",
   "description": "Automatically rename notes from frontmatter properties (e.g. lastname + firstname) when they change.",
   "author": "gilles6",

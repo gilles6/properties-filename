@@ -113,7 +113,7 @@ export default class PropertiesFilenamePlugin extends Plugin {
 			else if (result === "skipped-collision") skipped++;
 		}
 		new Notice(
-			`Properties Filename: ${renamed} renamed, ${skipped} collisions.`
+			`Renamed ${renamed} file(s), skipped ${skipped} collision(s).`
 		);
 	}
 
@@ -197,16 +197,36 @@ function applyTemplate(
 ): string | null {
 	let allPresent = true;
 	const result = template.replace(TEMPLATE_TOKEN, (_, key: string) => {
-		const raw = frontmatter[key];
-		if (raw === undefined || raw === null || raw === "") {
+		const value = stringifyFrontmatterValue(frontmatter[key]);
+		if (value === null) {
 			allPresent = false;
 			return "";
 		}
-		return String(raw).trim();
+		return value;
 	});
 	if (!allPresent) return null;
 	const collapsed = result.replace(/\s+/g, " ").trim();
 	return collapsed || null;
+}
+
+function stringifyFrontmatterValue(raw: unknown): string | null {
+	if (raw === null || raw === undefined) return null;
+	if (typeof raw === "string") {
+		const trimmed = raw.trim();
+		return trimmed === "" ? null : trimmed;
+	}
+	if (typeof raw === "number" || typeof raw === "boolean") {
+		return String(raw);
+	}
+	if (Array.isArray(raw)) {
+		const parts: string[] = [];
+		for (const item of raw) {
+			const v = stringifyFrontmatterValue(item);
+			if (v !== null) parts.push(v);
+		}
+		return parts.length > 0 ? parts.join(" ") : null;
+	}
+	return null;
 }
 
 function sanitizeFilename(name: string): string {
