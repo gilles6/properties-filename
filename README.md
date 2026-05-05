@@ -33,13 +33,25 @@ Auto-rename on property change is **off by default**. Enable it in settings if y
 
 ## Install (manual)
 
-1. Download `main.js`, `manifest.json` from the latest release
+1. Download `main.js`, `manifest.json`, `styles.css` from the latest release
 2. Drop into `<vault>/.obsidian/plugins/properties-filename/`
 3. Enable in Settings → Community plugins
 
 ## Install via BRAT (beta)
 
 Add `gilles6/properties-filename` in the BRAT plugin.
+
+## Development
+
+```sh
+npm install
+npm run dev      # esbuild watch mode
+npm run build    # production build
+npm run lint     # check Obsidian plugin guidelines (eslint-plugin-obsidianmd)
+npm run deploy   # build + copy artifacts into the local test vault
+```
+
+`npm run lint` runs the same checks that the ObsidianReviewBot performs on submission — handy to catch issues (sentence-case UI text, inline styles, unsafe API usage, etc.) before pushing a release.
 
 ## License
 
