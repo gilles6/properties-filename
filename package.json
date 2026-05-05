@@ -1,21 +1,33 @@
 {
   "name": "properties-filename",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Obsidian plugin: rename notes from frontmatter properties.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
     "build": "node esbuild.config.mjs production",
+    "lint": "eslint src/main.ts",
     "deploy": "npm run build && cp main.js manifest.json styles.css \"$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Serge/.obsidian/plugins/properties-filename/\"",
     "version": "node version-bump.mjs && git add manifest.json versions.json"
   },
-  "keywords": ["obsidian", "plugin", "frontmatter", "properties", "rename", "filename"],
+  "keywords": [
+    "obsidian",
+    "plugin",
+    "frontmatter",
+    "properties",
+    "rename",
+    "filename"
+  ],
   "author": "gilles6",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.2",
+    "@typescript-eslint/parser": "^8.59.2",
     "builtin-modules": "^3.3.0",
     "esbuild": "^0.20.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-obsidianmd": "^0.2.9",
     "obsidian": "latest",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3"

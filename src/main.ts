@@ -302,7 +302,7 @@ class PropertiesFilenameSettingTab extends PluginSettingTab {
 
 			new Setting(ruleEl)
 				.setName("Folder")
-				.setDesc("Folder path, e.g. Patients")
+				.setDesc("Folder where the rule applies (subfolders included).")
 				.addText((t) =>
 					t
 						.setPlaceholder("Patients")
@@ -333,7 +333,7 @@ class PropertiesFilenameSettingTab extends PluginSettingTab {
 				)
 				.addText((t) =>
 					t
-						.setPlaceholder("patient")
+						.setPlaceholder("Patient")
 						.setValue(rule.requireType ?? "")
 						.onChange(async (v) => {
 							rule.requireType = v.trim() || undefined;
